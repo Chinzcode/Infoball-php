@@ -1,0 +1,33 @@
+{% block document %}
+    <!doctype html>
+    <html lang="en">
+
+    {% block head %}
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Infoball</title>
+        <link rel="stylesheet" href="../html/css/main.css">
+      </head>
+    {% endblock %}
+
+    {% block navbar %}
+        <ul>
+          <li><a href="/pages/Home.php">Home</a></li>
+        </ul>
+    {% endblock %}
+
+    <body class="main">
+        {% block content %}{% endblock %}
+    </body>
+    <script type="module" src="../html/javascript/main.js"></script>
+
+    {% block footer %}
+        <footer>
+          <p>Author: Trym Solberg<br>
+              <a href="mailto:Trym@example.com">Trym@example.com</a>
+          </p>
+        </footer>
+    {% endblock %}
+    </html>
+{% endblock %}
