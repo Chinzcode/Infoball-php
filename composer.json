@@ -7,5 +7,9 @@
             "Infoball\\": "include/",
             "Pages\\": "pages/"
         }
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.7",
+        "friendsofphp/php-cs-fixer": "^3.49"
     }
 }

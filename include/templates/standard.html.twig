@@ -1,33 +1,49 @@
 {% block document %}
-    <!doctype html>
-    <html lang="en">
+<!doctype html>
+<html lang="en">
 
-    {% block head %}
-      <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Infoball</title>
-        <link rel="stylesheet" href="../html/css/main.css">
-      </head>
-    {% endblock %}
-
-    {% block navbar %}
-        <ul>
-          <li><a href="/pages/Home.php">Home</a></li>
-        </ul>
-    {% endblock %}
-
-    <body class="main">
-        {% block content %}{% endblock %}
-    </body>
+{% block head %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Infoball</title>
+    <link rel="stylesheet" href="../html/css/style.css">
     <script type="module" src="../html/javascript/main.js"></script>
+  </head>
+{% endblock %}
 
-    {% block footer %}
-        <footer>
-          <p>Author: Trym Solberg<br>
-              <a href="mailto:Trym@example.com">Trym@example.com</a>
-          </p>
-        </footer>
+{% block navbar %}
+  <ul>
+    {% if isUserLoggedIn is empty %} 
+      <li><a href="/pages/Login.php">Log in</a></li>
+      <li><a href="/pages/Signup.php">Sign up</a></li>
+    {% else %}
+      <li><a href="/pages/Home.php">Home</a></li>
+      <li><a href="/include/util/PHP/LogoutHandler/LogoutHandler.php">Log out</a></li>
+      </form>
+    {% endif %}
+  </ul>
+
+  <span>
+    {% if isUserLoggedIn is not empty %}      
+      <p>Welcome, {{username}}!</p>
+    {% endif %}
+  </span>
+
+{% endblock %}
+
+  <body class="main">
+    {% block content %}
+      <h1>{{title}}</h1>
     {% endblock %}
-    </html>
+  </body>
+
+{% block footer %}
+  <footer>
+    <p>Author: Trym Solberg
+        <a href="mailto:trym@example.com">trym@example.com</a>
+    </p>
+  </footer>
+{% endblock %}
+</html>
 {% endblock %}

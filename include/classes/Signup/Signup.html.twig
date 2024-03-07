@@ -1,0 +1,32 @@
+{% extends "/templates/standard.html.twig" %}
+
+{% block content %}
+
+<h1>{{page}}</h1>
+
+<span>
+    {% if errors["emptyInput"] %}
+        {{errors["emptyInput"]}}
+    {% elseif errors["invalidEmail"]%}
+        {{errors["invalidEmail"]}}
+    {% elseif errors["emailUsed"]%}
+        {{errors["emailUsed"]}}
+    {% elseif errors["usernameTaken"]%}
+        {{errors["usernameTaken"]}}
+    {% endif %}
+</span>
+
+<form action="./Signup.php" method="post">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+    
+    <label for="pwd">Password:</label>
+    <input type="password" id="pwd" name="pwd" placeholder="Enter your password" required>
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+    
+    <button type="submit">Signup</button>
+</form>
+
+{% endblock %}

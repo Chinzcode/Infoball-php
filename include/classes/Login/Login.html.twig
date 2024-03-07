@@ -1,0 +1,25 @@
+{% extends "/templates/standard.html.twig" %}
+
+{% block content %}
+
+<h1>{{page}}</h1>
+
+<span>
+    {% if errors["emptyInput"] %}
+        {{errors["emptyInput"]}}
+    {% elseif errors["invalidCredentials"]%}
+        {{errors["invalidCredentials"]}}
+    {% endif %}
+</span>
+
+<form action="./Login.php" method="post">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+    
+    <label for="pwd">Password:</label>
+    <input type="password" id="pwd" name="pwd" placeholder="Enter your password" required>
+    
+    <button type="submit">Login</button>
+</form>
+
+{% endblock %}
