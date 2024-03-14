@@ -1,0 +1,68 @@
+{% extends "/templates/standard.html.twig" %}
+
+{% block content %}
+
+<div class="COMMON_HEADER">
+    <div class="TOP_ROW">
+        <select name="" id="">
+            {% for season in data.seasons|reverse %}
+                <option value="{{ season.year }}">{{ season.year }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="MAIN_ROW">
+        <img src="{{ data.logo }}" alt="premier-league-logo">
+        <h1>{{ data.name }}</h1>
+        <h3>{{ data.country }}</h3>
+    </div>
+    
+    <div class="BOT_ROW">
+        <ul>
+            <li><a href="">Oversikt</a></li>
+            <li><a href="">Kamper</a></li>
+            <li><a href="">Tabell</a></li>
+            <li><a href="">Stats</a></li>
+        </ul>
+    </div>
+</div>
+    
+<div class="PAGE_CONTAINER">
+    <main class="PAGE_CONTENT">
+        <section class="MAIN_SECTION">
+            <section class="XXXX">
+                <h2>Alle Kamper</h2>
+                <a href="">Gå til Kamper -></a>
+                <div>Her kommer en liten oversikt over dagens/nærmeste kamper</div>
+            </section>
+
+            <section class="XXXX">
+                <h2>Topplister</h2>
+                <a href="">Mer statistikk -></a>
+                <div class="">Toppscorer</div>
+                <div class="">Målgivende</div>
+                <div class="">Røde kort</div>
+                <div class="">Gule kort</div>
+            </section>
+        </section>
+
+        <aside class="ASIDE_SECTION">
+            <h2>Tabell</h2>
+            <a href="">Gå til tabell -></a>
+            <div>Her kommer tabellen med all info</div>
+        </aside>
+    </main>
+</div>
+
+{% endblock %}
+
+
+{# <div>
+    {% if data %}
+        <div>League Name: {{ data.leagueInfo.name }}</div>
+        <div>Country: {{ data.countryInfo.name }}</div>
+        {% if data.logoUrl %}
+            <img src="{{ data.logoUrl }}" alt="Premier League Logo">
+        {% endif %}
+{% endif %}
+</div> #}
