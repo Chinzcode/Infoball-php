@@ -1,15 +1,15 @@
 <?php
 
-namespace Infoball\util\PHP\Leagues;
+namespace Infoball\util\PHP\League;
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
 
 /**
- * Class Leagues
+ * Class League
  *
- * Represents a Leagues entity with Leagues id, name, logo and country.
+ * Represents a League entity with League id, name, logo and country.
  */
-class Leagues
+class League
 {
     /**
      * @var int The id of the league.
@@ -32,6 +32,11 @@ class Leagues
     protected string $country;
 
     /**
+     * @var array The seasons of the league.
+     */
+    protected array $seasons;
+
+    /**
      * Constructor.
      *
      * @param int $id The id of the league.
@@ -39,12 +44,13 @@ class Leagues
      * @param string $logo The logo of the league.
      * @param string $country The country of the league.
      */
-    public function __construct(int $id, string $name, string $logo, string $country)
+    public function __construct(int $id, string $name, string $logo, string $country, array $seasons)
     {
         $this->id = $id;
         $this->name = $name;
         $this->logo = $logo;
         $this->country = $country;
+        $this->seasons = $seasons;
     }
 
     /**
@@ -85,5 +91,15 @@ class Leagues
     public function getCountry(): string
     {
         return $this->country;
+    }
+
+    /**
+     * Get the seasons of the league.
+     *
+     * @return array The seasons of the league.
+     */
+    public function getSeasons(): array
+    {
+        return $this->seasons;
     }
 }
