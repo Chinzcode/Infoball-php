@@ -36,8 +36,10 @@ class PremierLeague extends Base
 
     private function getLeagueData()
     {
-        $apiKey = 'cd49181cf69486c1ac135da582e54070';
-        $baseUrl = 'https://v3.football.api-sports.io/leagues';
+        // Fetch API key and base URL from environment variables
+        $apiKey = getenv('API_KEY');
+        $baseUrl = getenv('BASE_URL');
+
         $leaguesApiClient = new LeaguesApiClient($apiKey, $baseUrl);
         $leagueParser = new LeagueParser();
         $databaseManager = new DatabaseManager();
