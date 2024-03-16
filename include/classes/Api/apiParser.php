@@ -1,12 +1,12 @@
 <?php
 
-namespace Infoball\util\PHP\League;
+namespace Infoball\classes\Api;
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
 
-class LeagueParser
+class apiParser
 {
-    public function parseApiResponse(array $apiResponse): array
+    public function parseLeagueApiResponse(array $apiResponse): array
     {
         // Extract the relevant data from the API response
         $leagueData = $apiResponse[0]['league'];
