@@ -22,7 +22,8 @@ class DataHandler
         $this->databaseManager = $databaseManager;
     }
 
-    public function handleDataFetchingAndStoring(string $name, string $country)
+
+    public function handleLeaguesDataFetchingAndStoring(string $name, string $country)
     {
         $apiResponse = $this->apiClient->fetchLeagueData($name, $country);
 
@@ -33,7 +34,7 @@ class DataHandler
         $this->databaseManager->insertLeague($league);
     }
 
-    public function handleRetrievingDataFromDb(string $name, string $country)
+    public function handleRetrievingLeaguesDataFromDb(string $name, string $country)
     {
         $dbReponse = $this->databaseManager->getLeague($name, $country);
 

@@ -48,8 +48,8 @@ class PremierLeague extends Base
 
         $name = 'Premier League';
         $country = 'England';
-        // $dataHandler-> handleDataFetchingAndStoring($name, $country);
-        $leagueData = $dataHandler->handleRetrievingDataFromDb($name, $country);
+        // $dataHandler-> handleLeaguesDataFetchingAndStoring($name, $country);
+        $leagueData = $dataHandler->handleRetrievingLeaguesDataFromDb($name, $country);
 
         return [
             'id' => $leagueData->getId(),
