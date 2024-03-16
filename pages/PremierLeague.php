@@ -6,7 +6,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
 
 use Infoball\classes\Base\Base;
 use Infoball\classes\Api\LeaguesApiClient;
-use Infoball\util\PHP\League\LeagueParser;
+use Infoball\classes\Api\apiParser;
 use Infoball\util\PHP\DataHandler\DataHandler;
 use Infoball\classes\Database\DatabaseManager;
 
@@ -41,10 +41,10 @@ class PremierLeague extends Base
         $baseUrl = getenv('BASE_URL');
 
         $leaguesApiClient = new LeaguesApiClient($apiKey, $baseUrl);
-        $leagueParser = new LeagueParser();
+        $apiParser = new apiParser();
         $databaseManager = new DatabaseManager();
 
-        $dataHandler = new DataHandler($leaguesApiClient, $leagueParser, $databaseManager);
+        $dataHandler = new DataHandler($leaguesApiClient, $apiParser, $databaseManager);
 
         $name = 'Premier League';
         $country = 'England';
