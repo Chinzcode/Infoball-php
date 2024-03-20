@@ -49,7 +49,42 @@
         <aside class="ASIDE_SECTION">
             <h2>Tabell</h2>
             <a href="">Gå til tabell -></a>
-            <div>Her kommer tabellen med all info</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Logo</th>
+                        <th>Club</th>
+                        <th>P</th>
+                        <th>W</th>
+                        <th>D</th>
+                        <th>L</th>
+                        <th>GF</th>
+                        <th>GA</th>
+                        <th>GD</th>
+                        <th>Points</th>
+                        <th>Form</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for standing in standingsData %}
+                        <tr>
+                            <td>{{ standing.rank }}</td>
+                            <td><img src="{{ standing.logo }}" alt="{{ standing.name }} logo" width="50" height="50"></td>
+                            <td>{{ standing.name }}</td>
+                            <td>{{ standing.played }}</td>
+                            <td>{{ standing.win }}</td>
+                            <td>{{ standing.draw }}</td>
+                            <td>{{ standing.lose }}</td>
+                            <td>{{ standing.goalsFor }}</td>
+                            <td>{{ standing.goalsAgainst }}</td>
+                            <td>{{ standing.goalsDiff }}</td>
+                            <td>{{ standing.points }}</td>
+                            <td>{{ standing.form }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </aside>
     </main>
 </div>
