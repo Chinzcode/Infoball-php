@@ -2,30 +2,65 @@
 
 namespace Infoball\util\PHP\DataHandler;
 
-use Infoball\util\PHP\League\League;
-use Infoball\classes\Api\LeaguesApiClient;
 use Infoball\classes\Api\apiParser;
+use Infoball\util\PHP\League\League;
+use Infoball\util\PHP\Standing\Standing;
+use Infoball\classes\Api\LeaguesApiClient;
+use Infoball\classes\Api\StandingsApiClient;
 use Infoball\classes\Database\DatabaseManager;
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
 
 class DataHandler
 {
-    protected LeaguesApiClient $apiClient;
     protected apiParser $parser;
     protected DatabaseManager $databaseManager;
 
-    public function __construct(LeaguesApiClient $apiClient, apiParser $parser, DatabaseManager $databaseManager)
+    public function __construct(apiParser $parser, DatabaseManager $databaseManager)
     {
-        $this->apiClient = $apiClient;
         $this->parser = $parser;
         $this->databaseManager = $databaseManager;
     }
 
-
-    public function handleLeaguesDataFetchingAndStoring(string $name, string $country)
+    public function handleStandingsDataFetchingAndStoring(StandingsApiClient $standingsApiClient, int $league, int $season)
     {
-        $apiResponse = $this->apiClient->fetchLeagueData($name, $country);
+        $apiClient = $standingsApiClient;
+
+        $apiResponse = $apiClient->fetchLeagueData($league, $season);
+
+        $parsedStandings = $this->parser->parseStandingsApiResponse($apiResponse);
+
+        foreach ($parsedStandings as $data) {
+            $standing = new Standing(
+                $data['rank'],
+                $data['teamId'],
+                $data['name'],
+                $data['logo'],
+                $data['points'],
+                $data['goalsDiff'],
+                $data['form'],
+                $data['played'],
+                $data['win'],
+                $data['draw'],
+                $data['lose'],
+                $data['goalsFor'],
+                $data['goalsAgainst']
+            );
+
+            $this->databaseManager->insertStanding($standing, $league, $season);
+        }
+    }
+
+    public function handleRetrievingStandingsDataFromDb(int $league, int $season)
+    {
+        return $this->databaseManager->getStanding($league, $season);
+    }
+
+    public function handleLeaguesDataFetchingAndStoring(LeaguesApiClient $leaguesApiClient, string $name, string $country)
+    {
+        $apiClient = $leaguesApiClient;
+
+        $apiResponse = $apiClient->fetchLeagueData($name, $country);
 
         $parsedData = $this->parser->parseLeagueApiResponse($apiResponse);
 
