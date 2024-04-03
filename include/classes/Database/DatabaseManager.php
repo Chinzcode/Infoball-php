@@ -40,6 +40,15 @@ class DatabaseManager
         $stmt->execute();
     }
 
+    public function deleteStanding(int $league, int $season)
+    {
+        $db = Database::getDb();
+        $tableName = "leagueStandings" . $league . "_" . $season;
+        $query = "DELETE FROM $tableName";
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+    }
+
     public function getStanding(int $league, int $season)
     {
         $db = Database::getDb();

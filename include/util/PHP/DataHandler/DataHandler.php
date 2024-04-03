@@ -2,7 +2,7 @@
 
 namespace Infoball\util\PHP\DataHandler;
 
-use Infoball\classes\Api\apiParser;
+use Infoball\classes\Api\ApiParser;
 use Infoball\util\PHP\League\League;
 use Infoball\util\PHP\Standing\Standing;
 use Infoball\classes\Api\LeaguesApiClient;
@@ -13,10 +13,10 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
 
 class DataHandler
 {
-    protected apiParser $parser;
+    protected ApiParser $parser;
     protected DatabaseManager $databaseManager;
 
-    public function __construct(apiParser $parser, DatabaseManager $databaseManager)
+    public function __construct(ApiParser $parser, DatabaseManager $databaseManager)
     {
         $this->parser = $parser;
         $this->databaseManager = $databaseManager;
@@ -29,6 +29,8 @@ class DataHandler
         $apiResponse = $apiClient->fetchLeagueData($league, $season);
 
         $parsedStandings = $this->parser->parseStandingsApiResponse($apiResponse);
+
+        $this->databaseManager->deleteStanding($league, $season);
 
         foreach ($parsedStandings as $data) {
             $standing = new Standing(
