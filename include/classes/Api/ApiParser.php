@@ -4,13 +4,14 @@ namespace Infoball\classes\Api;
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
 
-class apiParser
+class ApiParser
 {
     public function parseStandingsApiResponse(array $apiResponse): array
     {
         $parsedStandings = [];
 
-        $leagueData = $apiResponse[0]['league'];
+        //$leagueData = $apiResponse[0]['league'];
+        $leagueData = reset($apiResponse)['league'];
 
         foreach ($leagueData['standings'] as $standings) {
             foreach ($standings as $standing) {
