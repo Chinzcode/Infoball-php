@@ -3,9 +3,9 @@
 namespace Infoball\classes\Database;
 
 use PDO;
-use Infoball\util\PHP\League\League;
+use Infoball\util\PHP\Entity\League\League;
 use Infoball\classes\Database\Database;
-use Infoball\util\PHP\Standing\Standing;
+use Infoball\util\PHP\Entity\Standing\Standing;
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
 

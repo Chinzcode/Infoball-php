@@ -1,6 +1,6 @@
 <?php
 
-namespace Infoball\util\PHP\Standing;
+namespace Infoball\util\PHP\Entity\Standing;
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
 
