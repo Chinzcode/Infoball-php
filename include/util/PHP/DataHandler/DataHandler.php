@@ -26,7 +26,7 @@ class DataHandler
     {
         $apiClient = $standingsApiClient;
 
-        $apiResponse = $apiClient->fetchLeagueData($league, $season);
+        $apiResponse = $apiClient->fetchStandingData($league, $season);
 
         $parsedStandings = $this->parser->parseStandingsApiResponse($apiResponse);
 
