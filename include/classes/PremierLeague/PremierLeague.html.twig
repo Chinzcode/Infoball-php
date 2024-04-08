@@ -5,16 +5,16 @@
 <div class="COMMON_HEADER">
     <div class="TOP_ROW">
         <select name="" id="">
-            {% for season in data.seasons|reverse %}
+            {% for season in leagueData.seasons|reverse %}
                 <option value="{{ season }}">{{ season }}</option>
             {% endfor %}
         </select>
     </div>
 
     <div class="MAIN_ROW">
-        <img src="{{ data.logo }}" alt="premier-league-logo">
-        <h1>{{ data.name }}</h1>
-        <h3>{{ data.country }}</h3>
+        <img src="{{ leagueData.logo }}" alt="premier-league-logo">
+        <h1>{{ leagueData.name }}</h1>
+        <h3>{{ leagueData.country }}</h3>
     </div>
     
     <div class="BOT_ROW">
@@ -67,7 +67,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for standing in standingsData %}
+                    {% for standing in standingData %}
                         <tr>
                             <td>{{ standing.rank }}</td>
                             <td><img src="{{ standing.logo }}" alt="{{ standing.name }} logo" width="50" height="50"></td>
