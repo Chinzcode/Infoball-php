@@ -39,7 +39,22 @@
             <section class="XXXX">
                 <h2>Topplister</h2>
                 <a href="">Mer statistikk -></a>
-                <div class="">Toppscorer</div>
+
+                <div class="">
+                    <a href="">Toppscorer</a>
+
+                    {% for player in topscorerData %}
+                        <div>
+                            <a href="">
+                                <img src="{{player.photo}}" alt="player image">
+                            </a>
+                            <a href="">{{player.name}}</a>
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+                <div>-------------------</div>
                 <div class="">Målgivende</div>
                 <div class="">Røde kort</div>
                 <div class="">Gule kort</div>
