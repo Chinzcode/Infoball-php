@@ -9,6 +9,7 @@ use Infoball\classes\Api\ApiParser;
 use Infoball\classes\Database\DatabaseManager;
 use Infoball\util\PHP\DataHandler\LeagueDataHandler;
 use Infoball\util\PHP\DataHandler\StandingDataHandler;
+use Infoball\util\PHP\DataHandler\TopscorerDataHandler;
 use Infoball\util\PHP\EnvironmentVariableManager\EnvironmentVariableManager;
 
 /**
@@ -33,13 +34,16 @@ class PremierLeague extends Base
 
             $leagueDataHandler = new LeagueDataHandler($apiParser, $databaseManager, $apiKey, 'https://v3.football.api-sports.io/leagues');
             $standingDataHandler = new StandingDataHandler($apiParser, $databaseManager, $apiKey, 'https://v3.football.api-sports.io/standings');
+            $topscorerDataHandler = new TopscorerDataHandler($apiParser, $databaseManager, $apiKey, 'https://v3.football.api-sports.io/players/topscorers');
 
             $leagueData = $leagueDataHandler->getLeagueData('Premier League', 'England');
             $standingData = $standingDataHandler->getStandingData(39, 2023);
+            $topscorerData = $topscorerDataHandler->getTopscorerData(39, 2023, 'topscorer');
 
             echo $this->render("/classes/PremierLeague/PremierLeague.html.twig", [
                 "leagueData" => $leagueData,
                 "standingData" => $standingData,
+                "topscorerData" => $topscorerData,
             ]);
         } else {
             header("Location: /pages/Login.php");
