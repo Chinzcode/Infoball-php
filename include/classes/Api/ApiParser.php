@@ -6,11 +6,35 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
 
 class ApiParser
 {
+    public function parseTopscorerApiResponse(array $apiResponse): array
+    {
+        $topscorerData = [];
+
+        foreach($apiResponse as $data) {
+            if (isset($data['player'])) {
+                $player = $data['player'];
+                $statistics = reset($data['statistics']);
+
+                $topscorerData[] = [
+                    'playerId' => $player['id'],
+                    'name' => $player['name'],
+                    'firstname' => $player['firstname'],
+                    'lastname' => $player['lastname'],
+                    'photo' => $player['photo'],
+                    'teamName' => $statistics['team']['name'],
+                    'teamLogo' => $statistics['team']['logo'],
+                    'goals' => $statistics['goals']['total'],
+                    'penaltyGoals' => $statistics['penalty']['scored']
+                ];
+            }
+        }
+
+        return $topscorerData;
+    }
+
     public function parseStandingsApiResponse(array $apiResponse): array
     {
         $parsedStandings = [];
-
-        //$leagueData = $apiResponse[0]['league'];
         $leagueData = reset($apiResponse)['league'];
 
         foreach ($leagueData['standings'] as $standings) {
@@ -39,9 +63,9 @@ class ApiParser
     public function parseLeagueApiResponse(array $apiResponse): array
     {
         // Extract the relevant data from the API response
-        $leagueData = $apiResponse[0]['league'];
-        $countryData = $apiResponse[0]['country'];
-        $leagueSeasons = $apiResponse[0]['seasons'];
+        $leagueData = reset($apiResponse)['league'];
+        $countryData = reset($apiResponse)['country'];
+        $leagueSeasons = reset($apiResponse)['seasons'];
 
         $leagueId = $leagueData['id'];
         $leagueName = $leagueData['name'];
