@@ -6,8 +6,10 @@ use Infoball\classes\Api\ApiParser;
 use Infoball\classes\Api\LeaguesApiClient;
 use Infoball\util\PHP\Entity\League\League;
 use Infoball\classes\Api\StandingsApiClient;
+use Infoball\classes\Api\TopscorerApiClient;
 use Infoball\classes\Database\DatabaseManager;
 use Infoball\util\PHP\Entity\Standing\Standing;
+use Infoball\classes\Entity\Topscorer\Topscorer;
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
 
@@ -20,6 +22,35 @@ class DataHandler
     {
         $this->parser = $parser;
         $this->databaseManager = $databaseManager;
+    }
+
+    public function handleTopscorerDataFetchingAndStoring(TopscorerApiClient $topscorerApiClient, int $league, int $season, string $name)
+    {
+        $apiClient = $topscorerApiClient;
+        $apiResponse = $apiClient->fetchTopscorerData($league, $season);
+        $parsedTopscorer = $this->parser->parseTopscorerApiResponse($apiResponse);
+        $this->databaseManager->deleteTopscorerData($league, $season, $name);
+
+        foreach ($parsedTopscorer as $data) {
+            $topscorer = new Topscorer(
+                $data['playerId'],
+                $data['name'],
+                $data['firstname'],
+                $data['lastname'],
+                $data['photo'],
+                $data['teamName'],
+                $data['teamLogo'],
+                $data['goals'],
+                $data['penaltyGoals'],
+            );
+
+            $this->databaseManager->insertTopscorerData($topscorer, $league, $season, $name);
+        }
+    }
+
+    public function handleRetrievingTopscorerDataFromDb(int $league, int $season, string $name)
+    {
+        return $this->databaseManager->getTopscorer($league, $season, $name);
     }
 
     public function handleStandingsDataFetchingAndStoring(StandingsApiClient $standingsApiClient, int $league, int $season)
