@@ -6,7 +6,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
 
 use Infoball\classes\Base\Base;
 use Infoball\classes\Login\LoginAction;
-use Infoball\util\PHP\ErrorHandler\ErrorHandler;
+use Infoball\classes\ErrorHandler\ErrorHandler;
 
 /**
  * Class Login

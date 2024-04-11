@@ -5,7 +5,7 @@ namespace Infoball\classes\Base;
 require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
 
 use Infoball\util\Twig\TwigEngine;
-use Infoball\util\PHP\SessionManager\SessionManager;
+use Infoball\classes\SessionManager\SessionManager;
 
 /**
  * Class Base
