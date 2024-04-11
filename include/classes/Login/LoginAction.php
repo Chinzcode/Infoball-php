@@ -8,7 +8,7 @@ use Exception;
 use PDOException;
 use Infoball\classes\Database\Database;
 use Infoball\classes\User\UserDatabaseQueries;
-use Infoball\util\PHP\ErrorHandler\ErrorHandler;
+use Infoball\classes\ErrorHandler\ErrorHandler;
 use Infoball\util\PHP\SessionManager\SessionManager;
 
 /**
