@@ -1,6 +1,6 @@
 <?php
 
-namespace Infoball\util\PHP\SessionManager;
+namespace Infoball\classes\SessionManager;
 
 use Infoball\classes\User\User;
 

@@ -9,7 +9,7 @@ use PDOException;
 use Infoball\classes\Database\Database;
 use Infoball\classes\User\UserDatabaseQueries;
 use Infoball\classes\ErrorHandler\ErrorHandler;
-use Infoball\util\PHP\SessionManager\SessionManager;
+use Infoball\classes\SessionManager\SessionManager;
 
 /**
  * Class LoginAction

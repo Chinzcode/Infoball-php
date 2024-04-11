@@ -4,12 +4,12 @@ namespace Infoball\classes\Signup;
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
 
+use Exception;
 use PDOException;
 use Infoball\classes\Database\Database;
 use Infoball\classes\Signup\SignupManager;
-use Infoball\util\PHP\ErrorHandler\ErrorHandler;
-use Infoball\util\PHP\SessionManager\SessionManager;
-use Exception;
+use Infoball\classes\ErrorHandler\ErrorHandler;
+use Infoball\classes\SessionManager\SessionManager;
 
 /**
  * Class SignupAction
