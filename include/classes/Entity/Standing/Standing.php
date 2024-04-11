@@ -1,6 +1,6 @@
 <?php
 
-namespace Infoball\util\PHP\Entity\Standing;
+namespace Infoball\classes\Entity\Standing;
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
 
@@ -9,18 +9,69 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
  */
 class Standing
 {
+    /**
+     * @var int The rank or standing of the team.
+     */
     protected int $rank;
+
+    /**
+     * @var int The id of the team.
+     */
     protected int $teamId;
+
+    /**
+     * @var string The name of the team.
+     */
     protected string $name;
+
+    /**
+     * @var string The URL or path to the team's logo.
+     */
     protected string $logo;
+
+    /**
+     * @var int The total points earned by the team.
+     */
     protected int $points;
+
+    /**
+     * @var int The goal difference (goals scored minus goals conceded) of the team.
+     */
     protected int $goalsDiff;
+
+    /**
+     * @var string The recent form of the team (e.g., WWDDL).
+     */
     protected string $form;
+
+    /**
+     * @var int The total number of matches played by the team.
+     */
     protected int $played;
+
+    /**
+     * @var int The total number of matches won by the team.
+     */
     protected int $win;
+
+    /**
+     * @var int The total number of matches drawn by the team.
+     */
     protected int $draw;
+
+    /**
+     * @var int The total number of matches lost by the team.
+     */
     protected int $lose;
+
+    /**
+     * @var int The total number of goals scored by the team.
+     */
     protected int $goalsFor;
+
+    /**
+     * @var int The total number of goals conceded by the team.
+     */
     protected int $goalsAgainst;
 
     /**

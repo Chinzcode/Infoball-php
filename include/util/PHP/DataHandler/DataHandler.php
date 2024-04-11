@@ -4,11 +4,11 @@ namespace Infoball\util\PHP\DataHandler;
 
 use Infoball\classes\Api\ApiParser;
 use Infoball\classes\Api\LeaguesApiClient;
-use Infoball\util\PHP\Entity\League\League;
 use Infoball\classes\Api\StandingsApiClient;
 use Infoball\classes\Api\TopscorerApiClient;
 use Infoball\classes\Database\DatabaseManager;
-use Infoball\util\PHP\Entity\Standing\Standing;
+use Infoball\classes\Entity\League\League;
+use Infoball\classes\Entity\Standing\Standing;
 use Infoball\classes\Entity\Topscorer\Topscorer;
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';

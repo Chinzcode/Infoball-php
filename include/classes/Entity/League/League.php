@@ -1,6 +1,6 @@
 <?php
 
-namespace Infoball\util\PHP\Entity\League;
+namespace Infoball\classes\Entity\League;
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
 
