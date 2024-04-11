@@ -48,9 +48,9 @@ class DataHandler
         }
     }
 
-    public function handleRetrievingTopscorerDataFromDb(int $league, int $season, string $name)
+    public function handleRetrievingTopscorerDataFromDb(int $league, int $season, string $tableName)
     {
-        return $this->databaseManager->getTopscorer($league, $season, $name);
+        return $this->databaseManager->getTopscorer($league, $season, $tableName);
     }
 
     public function handleStandingsDataFetchingAndStoring(StandingsApiClient $standingsApiClient, int $league, int $season)
