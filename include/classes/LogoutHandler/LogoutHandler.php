@@ -1,6 +1,6 @@
 <?php
 
-namespace Infoball\util\PHP\LogoutHandler;
+namespace Infoball\classes\LogoutHandler;
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
 
