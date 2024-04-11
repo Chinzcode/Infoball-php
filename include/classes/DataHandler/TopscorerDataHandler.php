@@ -1,8 +1,9 @@
 <?php
 
-namespace Infoball\util\PHP\DataHandler;
+namespace Infoball\classes\DataHandler;
 
 use Infoball\classes\Api\ApiParser;
+use Infoball\classes\DataHandler\DataHandler;
 use Infoball\classes\Database\DatabaseManager;
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';

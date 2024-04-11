@@ -1,13 +1,14 @@
 <?php
 
-namespace Infoball\util\PHP\DataHandler;
+namespace Infoball\classes\DataHandler;
 
 use Infoball\classes\Api\ApiParser;
+use Infoball\classes\DataHandler\DataHandler;
 use Infoball\classes\Database\DatabaseManager;
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
 
-class LeagueDataHandler
+class StandingDataHandler
 {
     protected ApiParser $parser;
     protected DatabaseManager $databaseManager;
@@ -22,17 +23,11 @@ class LeagueDataHandler
         $this->url = $url;
     }
 
-    public function getLeagueData(string $name, string $country): array
+    public function getStandingData(int $league, int $season): array
     {
         $dataHandler = new DataHandler($this->parser, $this->databaseManager);
-        $leagueData = $dataHandler->handleRetrievingLeaguesDataFromDb($name, $country);
+        $standingsData = $dataHandler->handleRetrievingStandingsDataFromDb($league, $season);
 
-        return [
-            'id' => $leagueData->getId(),
-            'name' => $leagueData->getName(),
-            'logo' => $leagueData->getLogo(),
-            'country' => $leagueData->getCountry(),
-            'seasons' => $leagueData->getSeasons(),
-        ];
+        return $standingsData;
     }
 }

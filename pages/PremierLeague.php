@@ -7,9 +7,9 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
 use Infoball\classes\Base\Base;
 use Infoball\classes\Api\ApiParser;
 use Infoball\classes\Database\DatabaseManager;
-use Infoball\util\PHP\DataHandler\LeagueDataHandler;
-use Infoball\util\PHP\DataHandler\StandingDataHandler;
-use Infoball\util\PHP\DataHandler\TopscorerDataHandler;
+use Infoball\classes\DataHandler\LeagueDataHandler;
+use Infoball\classes\DataHandler\StandingDataHandler;
+use Infoball\classes\DataHandler\TopscorerDataHandler;
 use Infoball\util\PHP\EnvironmentVariableManager\EnvironmentVariableManager;
 
 /**
