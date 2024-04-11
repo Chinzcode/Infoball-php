@@ -7,7 +7,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
 use Exception;
 use PDOException;
 use Infoball\classes\Database\Database;
-use Infoball\util\PHP\User\UserDatabaseQueries;
+use Infoball\classes\User\UserDatabaseQueries;
 use Infoball\util\PHP\ErrorHandler\ErrorHandler;
 use Infoball\util\PHP\SessionManager\SessionManager;
 

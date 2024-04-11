@@ -2,7 +2,7 @@
 
 namespace Infoball\util\PHP\SessionManager;
 
-use Infoball\util\PHP\User\User;
+use Infoball\classes\User\User;
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
 

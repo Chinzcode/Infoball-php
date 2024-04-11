@@ -4,7 +4,7 @@ namespace Infoball\classes\Signup;
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
 
-use Infoball\util\PHP\User\User;
+use Infoball\classes\User\User;
 use Infoball\classes\Database\Database;
 
 /**

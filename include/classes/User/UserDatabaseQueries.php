@@ -1,10 +1,11 @@
 <?php
 
-namespace Infoball\util\PHP\User;
+namespace Infoball\classes\User;
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
 
 use PDO;
+use Infoball\classes\User\User;
 
 /**
  * Class UserDatabaseQueries

@@ -4,7 +4,7 @@ namespace Infoball\util\PHP\ErrorHandler;
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
 
-use Infoball\util\PHP\User\UserDatabaseQueries;
+use Infoball\classes\User\UserDatabaseQueries;
 use PDO;
 
 /**
