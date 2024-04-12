@@ -4,11 +4,10 @@ namespace Infoball\classes\DataHandler;
 
 use Infoball\classes\Api\ApiParser;
 use Infoball\classes\Api\LeaguesApiClient;
-use Infoball\classes\Api\StandingsApiClient;
-use Infoball\classes\Api\TopscorerApiClient;
-use Infoball\classes\Database\DatabaseManager;
 use Infoball\classes\Entity\League\League;
+use Infoball\classes\Database\DatabaseManager;
 use Infoball\classes\Entity\Standing\Standing;
+use Infoball\classes\Api\StandardParamApiClient;
 use Infoball\classes\Entity\Topscorer\Topscorer;
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
@@ -24,10 +23,10 @@ class DataHandler
         $this->databaseManager = $databaseManager;
     }
 
-    public function handleTopscorerDataFetchingAndStoring(TopscorerApiClient $topscorerApiClient, int $league, int $season, string $name)
+    public function handleTopscorerDataFetchingAndStoring(StandardParamApiClient $standardParamApiClient, int $league, int $season, string $name)
     {
-        $apiClient = $topscorerApiClient;
-        $apiResponse = $apiClient->fetchTopscorerData($league, $season);
+        $apiClient = $standardParamApiClient;
+        $apiResponse = $apiClient->fetchApiData($league, $season);
         $parsedTopscorer = $this->parser->parseTopscorerApiResponse($apiResponse);
         $this->databaseManager->deleteTopscorerData($league, $season, $name);
 
@@ -53,11 +52,11 @@ class DataHandler
         return $this->databaseManager->getTopscorer($league, $season, $tableName);
     }
 
-    public function handleStandingsDataFetchingAndStoring(StandingsApiClient $standingsApiClient, int $league, int $season)
+    public function handleStandingsDataFetchingAndStoring(StandardParamApiClient $standardParamApiClient, int $league, int $season)
     {
-        $apiClient = $standingsApiClient;
+        $apiClient = $standardParamApiClient;
 
-        $apiResponse = $apiClient->fetchStandingData($league, $season);
+        $apiResponse = $apiClient->fetchApiData($league, $season);
 
         $parsedStandings = $this->parser->parseStandingsApiResponse($apiResponse);
 
