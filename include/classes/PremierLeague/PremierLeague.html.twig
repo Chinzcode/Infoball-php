@@ -48,16 +48,65 @@
                             <a href="">
                                 <img src="{{player.photo}}" alt="player image">
                             </a>
-                            <a href="">{{player.name}}</a>
+                            <span>{{player.name}}</span>
+                            <img src="{{player.teamLogo}}" alt="team logo">
+                            <span>{{player.goals}}</span>
                         </div>
                     {% endfor %}
-
                 </div>
 
                 <div>-------------------</div>
-                <div class="">Målgivende</div>
-                <div class="">Røde kort</div>
-                <div class="">Gule kort</div>
+
+                <div class="">
+                    <a href="">Målgivende</a>
+                    
+                    {% for player in topassistsData %}
+                        <div>
+                            <a href="">
+                                <img src="{{player.photo}}" alt="player image">
+                            </a>
+                            <span>{{player.name}}</span>
+                            <img src="{{player.teamLogo}}" alt="team logo">
+                            <span>{{player.assists}}</span>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div>-------------------</div>
+
+                <div class="">
+                    <a href="">Gule kort</a>
+                
+                    {% for player in yellowcardsData %}
+                        <div>
+                            <a href="">
+                                <img src="{{player.photo}}" alt="player image">
+                            </a>
+                            <span>{{player.name}}</span>
+                            <img src="{{player.teamLogo}}" alt="team logo">
+                            <span>{{player.yellowcards}}</span>
+                        </div>
+                    {% endfor %}
+                </div>
+                
+                <div>-------------------</div>
+                
+                <div class="">
+                    <a href="">Røde kort</a>
+                
+                    {% for player in redcardsData %}
+                        <div>
+                            <a href="">
+                                <img src="{{player.photo}}" alt="player image">
+                            </a>
+                            <span>{{player.name}}</span>
+                            <img src="{{player.teamLogo}}" alt="team logo">
+                            <span>{{player.redcards}}</span>
+                        </div>
+                    {% endfor %}
+                </div>
+                
+
             </section>
         </section>
 

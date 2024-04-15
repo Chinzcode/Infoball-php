@@ -30,19 +30,25 @@ class PremierLeague extends Base
         $this->databaseManager = new DatabaseManager();
         $this->dataHandler = new DataHandler($this->apiParser, $this->databaseManager);
 
-        if (isset($_SESSION["userId"])) {
+        if (isset($_SESSION['userId'])) {
 
             $leagueData = $this->dataHandler->handleRetrievingLeaguesDataFromDb('Premier League', 'England');
             $standingData = $this->dataHandler->handleRetrievingStandingsDataFromDb(39, 2023);
-            $topscorerData = $this->dataHandler->handleRetrievingTopscorerDataFromDb(39, 2023, 'topscorer');
+            $topscorerData = $this->dataHandler->handleRetrievingPlayerstatsDataFromDb(39, 2023, 'topscorer');
+            $topassistsData = $this->dataHandler->handleRetrievingPlayerstatsDataFromDb(39, 2023, 'topassists');
+            $yellowcardsData = $this->dataHandler->handleRetrievingPlayerstatsDataFromDb(39, 2023, 'topyellowcards');
+            $redcardsData = $this->dataHandler->handleRetrievingPlayerstatsDataFromDb(39, 2023, 'topredcards');
 
-            echo $this->render("/classes/PremierLeague/PremierLeague.html.twig", [
-                "leagueData" => $leagueData,
-                "standingData" => $standingData,
-                "topscorerData" => $topscorerData,
+            echo $this->render('/classes/PremierLeague/PremierLeague.html.twig', [
+                'leagueData' => $leagueData,
+                'standingData' => $standingData,
+                'topscorerData' => $topscorerData,
+                'topassistsData' => $topassistsData,
+                'yellowcardsData' => $yellowcardsData,
+                'redcardsData' => $redcardsData,
             ]);
         } else {
-            header("Location: /pages/Login.php");
+            header('Location: /pages/Login.php');
         }
     }
 }
