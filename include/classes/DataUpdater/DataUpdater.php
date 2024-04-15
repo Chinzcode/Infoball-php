@@ -34,9 +34,9 @@ class DataUpdater
         $this->dataHandler->handleStandingsDataFetchingAndStoring($this->standardParamApiClient, $league, $season);
     }
 
-    public function updateTopscorerData(int $league, int $season, string $name) //league = 39, season = 2023, name = topscorer
+    public function updatePlayerstatsData(int $league, int $season, string $name) //league = 39, season = 2023, name = topscorer or topassists etc.
     {
-        $this->dataHandler->handleTopscorerDataFetchingAndStoring($this->standardParamApiClient, $league, $season, $name);
+        $this->dataHandler->handlePlayerstatsDataFetchingAndStoring($this->standardParamApiClient, $league, $season, $name);
     }
 }
 
@@ -44,4 +44,13 @@ class DataUpdater
 // $updateData->updateStandingsData(39, 2023);
 
 // $updateData = new DataUpdater('https://v3.football.api-sports.io/players/topscorers');
-// $updateData->updateTopscorerData(39, 2023, 'topscorer');
+// $updateData->updatePlayerstatsData(39, 2023, 'topscorer');
+
+// $updateData = new DataUpdater('https://v3.football.api-sports.io/players/topassists');
+// $updateData->updatePlayerstatsData(39, 2023, 'topassists');
+
+// $updateData = new DataUpdater('https://v3.football.api-sports.io/players/topyellowcards');
+// $updateData->updatePlayerstatsData(39, 2023, 'topyellowcards');
+
+// $updateData = new DataUpdater('https://v3.football.api-sports.io/players/topredcards');
+// $updateData->updatePlayerstatsData(39, 2023, 'topredcards');

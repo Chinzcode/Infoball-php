@@ -6,16 +6,16 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
 
 class ApiParser
 {
-    public function parseTopscorerApiResponse(array $apiResponse): array
+    public function parsePlayerstatsApiResponse(array $apiResponse): array
     {
-        $topscorerData = [];
+        $playerstatsData = [];
 
         foreach($apiResponse as $data) {
             if (isset($data['player'])) {
                 $player = $data['player'];
                 $statistics = reset($data['statistics']);
 
-                $topscorerData[] = [
+                $playerstatsData[] = [
                     'playerId' => $player['id'],
                     'name' => $player['name'],
                     'firstname' => $player['firstname'],
@@ -24,12 +24,15 @@ class ApiParser
                     'teamName' => $statistics['team']['name'],
                     'teamLogo' => $statistics['team']['logo'],
                     'goals' => $statistics['goals']['total'],
-                    'penaltyGoals' => $statistics['penalty']['scored']
+                    'penaltyGoals' => $statistics['penalty']['scored'],
+                    'assists' => $statistics['goals']['assists'],
+                    'yellowCard' => $statistics['cards']['yellow'],
+                    'redCard' => $statistics['cards']['red'],
                 ];
             }
         }
 
-        return $topscorerData;
+        return $playerstatsData;
     }
 
     public function parseStandingsApiResponse(array $apiResponse): array

@@ -8,7 +8,7 @@ use Infoball\classes\Entity\League\League;
 use Infoball\classes\Database\DatabaseManager;
 use Infoball\classes\Entity\Standing\Standing;
 use Infoball\classes\Api\StandardParamApiClient;
-use Infoball\classes\Entity\Topscorer\Topscorer;
+use Infoball\classes\Entity\Playerstats\Playerstats;
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
 
@@ -23,15 +23,17 @@ class DataHandler
         $this->databaseManager = $databaseManager;
     }
 
-    public function handleTopscorerDataFetchingAndStoring(StandardParamApiClient $standardParamApiClient, int $league, int $season, string $name)
+    public function handlePlayerstatsDataFetchingAndStoring(StandardParamApiClient $standardParamApiClient, int $league, int $season, string $name)
     {
         $apiClient = $standardParamApiClient;
         $apiResponse = $apiClient->fetchApiData($league, $season);
-        $parsedTopscorer = $this->parser->parseTopscorerApiResponse($apiResponse);
-        $this->databaseManager->deleteTopscorerData($league, $season, $name);
+        $parsedPlayerstats = $this->parser->parsePlayerstatsApiResponse($apiResponse);
+        $this->databaseManager->deletePlayerstatsData($league, $season, $name);
 
-        foreach ($parsedTopscorer as $data) {
-            $topscorer = new Topscorer(
+        foreach ($parsedPlayerstats as $data) {
+            $assists = isset($data['assists']) ? $data['assists'] : 0;
+
+            $playerstats = new Playerstats(
                 $data['playerId'],
                 $data['name'],
                 $data['firstname'],
@@ -41,15 +43,18 @@ class DataHandler
                 $data['teamLogo'],
                 $data['goals'],
                 $data['penaltyGoals'],
+                $assists,
+                $data['yellowCard'],
+                $data['redCard']
             );
 
-            $this->databaseManager->insertTopscorerData($topscorer, $league, $season, $name);
+            $this->databaseManager->insertPlayerstatsData($playerstats, $league, $season, $name);
         }
     }
 
-    public function handleRetrievingTopscorerDataFromDb(int $league, int $season, string $tableName)
+    public function handleRetrievingPlayerstatsDataFromDb(int $league, int $season, string $tableName)
     {
-        return $this->databaseManager->getTopscorer($league, $season, $tableName);
+        return $this->databaseManager->getPlayerstats($league, $season, $tableName);
     }
 
     public function handleStandingsDataFetchingAndStoring(StandardParamApiClient $standardParamApiClient, int $league, int $season)

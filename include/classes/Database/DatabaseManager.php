@@ -5,8 +5,8 @@ namespace Infoball\classes\Database;
 use PDO;
 use Infoball\classes\Database\Database;
 use Infoball\classes\Entity\League\League;
+use Infoball\classes\Entity\Playerstats\Playerstats;
 use Infoball\classes\Entity\Standing\Standing;
-use Infoball\classes\Entity\Topscorer\Topscorer;
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
 
@@ -16,22 +16,25 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
  */
 class DatabaseManager
 {
-    public function insertTopscorerData(Topscorer $topscorer, int $league, int $season, string $name)
+    public function insertPlayerstatsData(Playerstats $playerstats, int $league, int $season, string $name)
     {
         $db = Database::getDb();
         $tableName = $name . $league . "_" . $season;
-        $query = "INSERT INTO $tableName (player_id, name, firstname, lastname, photo, team_name, team_logo, goals, penalty_goals) 
-                  VALUES (:player_id, :name, :firstname, :lastname, :photo, :team_name, :team_logo, :goals, :penalty_goals)";
+        $query = "INSERT INTO $tableName (player_id, name, firstname, lastname, photo, team_name, team_logo, goals, penalty_goals, assists, yellow_card, red_card) 
+                  VALUES (:player_id, :name, :firstname, :lastname, :photo, :team_name, :team_logo, :goals, :penalty_goals, :assists, :yellow_card, :red_card)";
         $stmt = $db->prepare($query);
-        $stmt->bindValue(":player_id", $topscorer->getPlayerId());
-        $stmt->bindValue(":name", $topscorer->getName());
-        $stmt->bindValue(":firstname", $topscorer->getFirstname());
-        $stmt->bindValue(":lastname", $topscorer->getLastname());
-        $stmt->bindValue(":photo", $topscorer->getPhoto());
-        $stmt->bindValue(":team_name", $topscorer->getTeamName());
-        $stmt->bindValue(":team_logo", $topscorer->getTeamLogo());
-        $stmt->bindValue(":goals", $topscorer->getGoals());
-        $stmt->bindValue(":penalty_goals", $topscorer->getPenaltyGoals());
+        $stmt->bindValue(":player_id", $playerstats->getPlayerId());
+        $stmt->bindValue(":name", $playerstats->getName());
+        $stmt->bindValue(":firstname", $playerstats->getFirstname());
+        $stmt->bindValue(":lastname", $playerstats->getLastname());
+        $stmt->bindValue(":photo", $playerstats->getPhoto());
+        $stmt->bindValue(":team_name", $playerstats->getTeamName());
+        $stmt->bindValue(":team_logo", $playerstats->getTeamLogo());
+        $stmt->bindValue(":goals", $playerstats->getGoals());
+        $stmt->bindValue(":penalty_goals", $playerstats->getPenaltyGoals());
+        $stmt->bindValue(":assists", $playerstats->getAssists());
+        $stmt->bindValue(":yellow_card", $playerstats->getYellowcards());
+        $stmt->bindValue(":red_card", $playerstats->getRedcards());
         $stmt->execute();
     }
 
@@ -44,12 +47,12 @@ class DatabaseManager
         $stmt->execute();
     }
 
-    public function deleteTopscorerData(int $league, int $season, string $name)
+    public function deletePlayerstatsData(int $league, int $season, string $name)
     {
         $this->deleteDatabaseTableData($league, $season, $name);
     }
 
-    public function getTopscorer(int $league, int $season, string $name)
+    public function getPlayerstats(int $league, int $season, string $name)
     {
         $db = Database::getDb();
         $tableName = $name . $league . "_" . $season;
@@ -57,9 +60,9 @@ class DatabaseManager
         $stmt = $db->prepare($query);
         $stmt->execute();
 
-        $goals = [];
+        $stats = [];
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $goal = new Topscorer(
+            $playerstats = new Playerstats(
                 $row['player_id'],
                 $row['name'],
                 $row['firstname'],
@@ -69,12 +72,15 @@ class DatabaseManager
                 $row['team_logo'],
                 $row['goals'],
                 $row['penalty_goals'],
+                $row['assists'],
+                $row['yellow_card'],
+                $row['red_card']
             );
 
-            $goals[] = $goal;
+            $stats[] = $playerstats;
         }
 
-        return $goals;
+        return $stats;
     }
 
     public function insertStanding(Standing $standing, int $league, int $season)
