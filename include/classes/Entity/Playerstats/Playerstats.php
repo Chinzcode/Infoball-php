@@ -1,15 +1,15 @@
 <?php
 
-namespace Infoball\classes\Entity\Topscorer;
+namespace Infoball\classes\Entity\Playerstats;
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
 
 /**
- * Class Topscorer
+ * Class Playerstats
  *
- * Represents a Topscorer entity with id, playerId, name, firstname, lastname, photo, teamName, teamLogo, goals, penaltyGoals.
+ * Represents a Playerstats entity with id, playerId, name, firstname, lastname, photo, teamName, teamLogo, goals, penaltyGoals, assists, yellowCard, redCard.
  */
-class Topscorer
+class Playerstats
 {
     /**
      * @var int The id or position of player depending on goals scored.
@@ -62,6 +62,21 @@ class Topscorer
     protected int $penaltyGoals;
 
     /**
+     * @var int The total number of assists given by the player.
+     */
+    protected int $assists;
+
+    /**
+     * @var int The total number of yellow cards player has received.
+     */
+    protected int $yellowCard;
+
+    /**
+     * @var int The total number of red cards player has received.
+     */
+    protected int $redCard;
+
+    /**
      * Constructor.
      *
      * @param int $playerId The id of the player.
@@ -73,6 +88,9 @@ class Topscorer
      * @param string $teamLogo The URL of the team's logo.
      * @param int $goals The total number of goals scored by the player.
      * @param int $penaltyGoals The total number of penalty goals scored by the player.
+     * @param int $assists The total number of assists given by the player.
+     * @param int $yellowCard The total number of yellow cards player has received.
+     * @param int $redCard The total number of red cards player has received.
      */
     public function __construct(
         int $playerId,
@@ -83,7 +101,10 @@ class Topscorer
         string $teamName,
         string $teamLogo,
         int $goals,
-        int $penaltyGoals
+        int $penaltyGoals,
+        int $assists,
+        int $yellowCard,
+        int $redCard
     ) {
         $this->playerId = $playerId;
         $this->name = $name;
@@ -94,12 +115,15 @@ class Topscorer
         $this->teamLogo = $teamLogo;
         $this->goals = $goals;
         $this->penaltyGoals = $penaltyGoals;
+        $this->assists = $assists;
+        $this->yellowCard = $yellowCard;
+        $this->redCard = $redCard;
     }
 
     /**
-     * Get the id or position of player depending on Topscorers scored.
+     * Get the id or position of player depending on Playerstatss scored.
      *
-     * @return int The id or position of player depending on Topscorers scored.
+     * @return int The id or position of player depending on Playerstatss scored.
      */
     public function getId()
     {
@@ -194,5 +218,35 @@ class Topscorer
     public function getPenaltyGoals()
     {
         return $this->penaltyGoals;
+    }
+
+    /**
+     * Get the total number of assists given by the player.
+     *
+     * @return int The total number of assists given by the player.
+     */
+    public function getAssists()
+    {
+        return $this->assists;
+    }
+
+    /**
+     * Get the total number of yellow cards player has received.
+     *
+     * @return int total number of yellow cards player has received.
+     */
+    public function getYellowcards()
+    {
+        return $this->yellowCard;
+    }
+
+    /**
+     * Get the total number of red cards player has received.
+     *
+     * @return int total number of red cards player has received.
+     */
+    public function getRedcards()
+    {
+        return $this->redCard;
     }
 }
