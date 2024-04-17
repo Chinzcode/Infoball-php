@@ -6,6 +6,57 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
 
 class ApiParser
 {
+    public function parseFixturesApiResponse(array $apiResponse): array
+    {
+        $fixturesData = [];
+
+        foreach ($apiResponse as $fixture) {
+            $fixtureInfo = $fixture['fixture'];
+            $leagueInfo = $fixture['league'];
+            $homeTeam = $fixture['teams']['home'];
+            $awayTeam = $fixture['teams']['away'];
+            $statusInfo = $fixtureInfo['status'];
+            $scoreInfo = $fixture['score'];
+
+            $fixturesData[] = [
+                'fixtureId' => $fixtureInfo['id'],
+                'leagueId' => $leagueInfo['id'],
+                'leagueName' => $leagueInfo['name'],
+                'leagueCountry' => $leagueInfo['country'],
+                'leagueLogo' => $leagueInfo['logo'],
+                'leagueRound' => $leagueInfo['round'],
+                'homeTeamId' => $homeTeam['id'],
+                'homeTeamName' => $homeTeam['name'],
+                'homeTeamLogo' => $homeTeam['logo'],
+                'awayTeamId' => $awayTeam['id'],
+                'awayTeamName' => $awayTeam['name'],
+                'awayTeamLogo' => $awayTeam['logo'],
+                'referee' => $fixtureInfo['referee'],
+                'timezone' => $fixtureInfo['timezone'],
+                'fixtureDate' => $fixtureInfo['date'],
+                'fixtureTimestamp' => $fixtureInfo['timestamp'],
+                'venueId' => $fixtureInfo['venue']['id'],
+                'venueName' => $fixtureInfo['venue']['name'],
+                'venueCity' => $fixtureInfo['venue']['city'],
+                'statusLong' => $statusInfo['long'],
+                'statusShort' => $statusInfo['short'],
+                'statusElapsed' => $statusInfo['elapsed'],
+                'goalsHome' => $fixture['goals']['home'],
+                'goalsAway' => $fixture['goals']['away'],
+                'scoreHalftimeHome' => $scoreInfo['halftime']['home'],
+                'scoreHalftimeAway' => $scoreInfo['halftime']['away'],
+                'scoreFulltimeHome' => $scoreInfo['fulltime']['home'],
+                'scoreFulltimeAway' => $scoreInfo['fulltime']['away'],
+                'scoreExtratimeHome' => $scoreInfo['extratime']['home'],
+                'scoreExtratimeAway' => $scoreInfo['extratime']['away'],
+                'scorePenaltyHome' => $scoreInfo['penalty']['home'],
+                'scorePenaltyAway' => $scoreInfo['penalty']['away'],
+            ];
+        }
+
+        return $fixturesData;
+    }
+
     public function parsePlayerstatsApiResponse(array $apiResponse): array
     {
         $playerstatsData = [];

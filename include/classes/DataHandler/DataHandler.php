@@ -5,6 +5,8 @@ namespace Infoball\classes\DataHandler;
 use Infoball\classes\Api\ApiParser;
 use Infoball\classes\Api\LeaguesApiClient;
 use Infoball\classes\Entity\League\League;
+use Infoball\classes\Api\FixturesApiClient;
+use Infoball\classes\Entity\Fixture\Fixture;
 use Infoball\classes\Database\DatabaseManager;
 use Infoball\classes\Entity\Standing\Standing;
 use Infoball\classes\Api\StandardParamApiClient;
@@ -23,6 +25,58 @@ class DataHandler
         $this->databaseManager = $databaseManager;
     }
 
+    public function handleFixturesDataFetchingAndStoring(FixturesApiClient $fixturesApiClient, int $league, int $season, string $name, string $startDate, string $endDate)
+    {
+        $apiClient = $fixturesApiClient;
+        $apiResponse = $apiClient->fetchApiData($league, $season, $startDate, $endDate);
+        $parsedFixtures = $this->parser->parseFixturesApiResponse($apiResponse);
+        $this->databaseManager->deleteFixturesData($league, $season, $name);
+
+        foreach ($parsedFixtures as $data) {
+            $fixture = new Fixture(
+                $data['fixtureId'],
+                $data['leagueId'],
+                $data['leagueName'],
+                $data['leagueCountry'],
+                $data['leagueLogo'],
+                $data['leagueRound'],
+                $data['homeTeamId'],
+                $data['homeTeamName'],
+                $data['homeTeamLogo'],
+                $data['awayTeamId'],
+                $data['awayTeamName'],
+                $data['awayTeamLogo'],
+                $data['referee'],
+                $data['timezone'],
+                $data['fixtureDate'],
+                $data['fixtureTimestamp'],
+                $data['venueId'],
+                $data['venueName'],
+                $data['venueCity'],
+                $data['statusLong'],
+                $data['statusShort'],
+                $data['statusElapsed'],
+                $data['goalsHome'],
+                $data['goalsAway'],
+                $data['scoreHalftimeHome'],
+                $data['scoreHalftimeAway'],
+                $data['scoreFulltimeHome'],
+                $data['scoreFulltimeAway'],
+                $data['scoreExtratimeHome'],
+                $data['scoreExtratimeAway'],
+                $data['scorePenaltyHome'],
+                $data['scorePenaltyAway']
+            );
+
+            $this->databaseManager->insertFixturesData($fixture, $league, $season, $name);
+        }
+    }
+
+    public function handleRetrievingFixturesDataFromDb(int $league, int $season, string $tableName)
+    {
+        return $this->databaseManager->getFixtures($league, $season, $tableName);
+    }
+
     public function handlePlayerstatsDataFetchingAndStoring(StandardParamApiClient $standardParamApiClient, int $league, int $season, string $name)
     {
         $apiClient = $standardParamApiClient;
@@ -32,7 +86,6 @@ class DataHandler
 
         foreach ($parsedPlayerstats as $data) {
             $assists = isset($data['assists']) ? $data['assists'] : 0;
-
             $playerstats = new Playerstats(
                 $data['playerId'],
                 $data['name'],
@@ -60,11 +113,8 @@ class DataHandler
     public function handleStandingsDataFetchingAndStoring(StandardParamApiClient $standardParamApiClient, int $league, int $season)
     {
         $apiClient = $standardParamApiClient;
-
         $apiResponse = $apiClient->fetchApiData($league, $season);
-
         $parsedStandings = $this->parser->parseStandingsApiResponse($apiResponse);
-
         $this->databaseManager->deleteStanding($league, $season);
 
         foreach ($parsedStandings as $data) {
@@ -96,22 +146,16 @@ class DataHandler
     public function handleLeaguesDataFetchingAndStoring(LeaguesApiClient $leaguesApiClient, string $name, string $country)
     {
         $apiClient = $leaguesApiClient;
-
         $apiResponse = $apiClient->fetchLeagueData($name, $country);
-
         $parsedData = $this->parser->parseLeagueApiResponse($apiResponse);
-
         $league = new League($parsedData['id'], $parsedData['name'], $parsedData['logo'], $parsedData['country'], $parsedData['seasons']);
-
         $this->databaseManager->insertLeague($league);
     }
 
     public function handleRetrievingLeaguesDataFromDb(string $name, string $country)
     {
         $dbReponse = $this->databaseManager->getLeague($name, $country);
-
         $league = new League($dbReponse['id'], $dbReponse['name'], $dbReponse['logo'], $dbReponse['country'], $dbReponse['seasons']);
-
         return $league;
     }
 }
