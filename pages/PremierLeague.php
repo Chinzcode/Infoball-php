@@ -38,6 +38,7 @@ class PremierLeague extends Base
             $topassistsData = $this->dataHandler->handleRetrievingPlayerstatsDataFromDb(39, 2023, 'topassists');
             $yellowcardsData = $this->dataHandler->handleRetrievingPlayerstatsDataFromDb(39, 2023, 'topyellowcards');
             $redcardsData = $this->dataHandler->handleRetrievingPlayerstatsDataFromDb(39, 2023, 'topredcards');
+            $fixturesData = $this->dataHandler->handleRetrievingFixturesDataFromDb(39, 2023, 'allFixtures');
 
             echo $this->render('/classes/PremierLeague/PremierLeague.html.twig', [
                 'leagueData' => $leagueData,
@@ -46,6 +47,7 @@ class PremierLeague extends Base
                 'topassistsData' => $topassistsData,
                 'yellowcardsData' => $yellowcardsData,
                 'redcardsData' => $redcardsData,
+                'fixturesData' => $fixturesData,
             ]);
         } else {
             header('Location: /pages/Login.php');

@@ -30,10 +30,36 @@
 <div class="PAGE_CONTAINER">
     <main class="PAGE_CONTENT">
         <section class="MAIN_SECTION">
+
             <section class="XXXX">
-                <h2>Alle Kamper</h2>
-                <a href="">Gå til Kamper -></a>
-                <div>Her kommer en liten oversikt over dagens/nærmeste kamper</div>
+                <div class="section_heading">
+                    <h2>Alle Kamper</h2>
+                    <a href="">Gå til Kamper -></a>
+                </div>
+                <div class="XXXX_container">
+                    {# box = a href #}
+                    {% for fixture in fixturesData %}
+                        <div class="XXXX_box">
+                            <div class="XXXX_dateandtime">
+                                {{fixture.fixtureDate}}
+                            </div>
+                            <div class="XXXX_">
+                                <div class="score">
+                                    {{fixture.goalsHome}}
+                                    {{fixture.goalsAway}}
+                                </div>
+                                <div class="teams">
+                                    <div class="hometeam">
+                                        {{fixture.homeTeamName}}
+                                    </div>
+                                    <div class="awayteam">
+                                        {{fixture.awayTeamName}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
             </section>
 
             <section class="XXXX">
