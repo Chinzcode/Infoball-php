@@ -15,12 +15,12 @@
 {% block navbar %}
   <ul>
     {% if isUserLoggedIn is empty %} 
-      <li><a href="/pages/Login.php">Log in</a></li>
-      <li><a href="/pages/Signup.php">Sign up</a></li>
+      <li><a href="/Infoball/pages/Login.php">Log in</a></li>
+      <li><a href="/Infoball/pages/Signup.php">Sign up</a></li>
     {% else %}
-      <li><a href="/pages/Home.php">Home</a></li>
-      <li><a href="/pages/PremierLeague.php">Premier League</a></li>
-      <li><a href="/include/classes/LogoutHandler/LogoutHandler.php">Log out</a></li>
+      <li><a href="/Infoball/pages/Home.php">Home</a></li>
+      <li><a href="/Infoball/pages/PremierLeague.php">Premier League</a></li>
+      <li><a href="/Infoball/include/classes/LogoutHandler/LogoutHandler.php">Log out</a></li>
       </form>
     {% endif %}
   </ul>

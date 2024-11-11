@@ -2,7 +2,7 @@
 
 namespace Infoball\util\Twig;
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/Infoball/config/setup.php';
 
 use Exception;
 use Twig\Environment;
@@ -165,6 +165,6 @@ class TwigEngine
      */
     protected static function getDefaultTwigLoader(): FilesystemLoader
     {
-        return new FilesystemLoader($_SERVER['DOCUMENT_ROOT'] . "/include");
+        return new FilesystemLoader($_SERVER['DOCUMENT_ROOT'] . "/Infoball/include");
     }
 }

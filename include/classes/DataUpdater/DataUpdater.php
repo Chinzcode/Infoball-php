@@ -9,7 +9,7 @@ use Infoball\classes\Database\DatabaseManager;
 use Infoball\classes\Api\StandardParamApiClient;
 use Infoball\util\PHP\EnvironmentVariableManager\EnvironmentVariableManager;
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/Infoball/config/setup.php';
 
 class DataUpdater
 {

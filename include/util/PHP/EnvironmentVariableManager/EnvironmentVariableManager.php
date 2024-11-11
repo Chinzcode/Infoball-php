@@ -4,7 +4,7 @@ namespace Infoball\util\PHP\EnvironmentVariableManager;
 
 use Dotenv\Dotenv;
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/Infoball/config/setup.php';
 
 class EnvironmentVariableManager
 {

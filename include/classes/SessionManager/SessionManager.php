@@ -4,7 +4,7 @@ namespace Infoball\classes\SessionManager;
 
 use Infoball\classes\User\User;
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/Infoball/config/setup.php';
 
 /**
  * Class SessionManager

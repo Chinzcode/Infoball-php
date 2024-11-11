@@ -2,7 +2,7 @@
 
 namespace Infoball\classes\Signup;
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/Infoball/config/setup.php';
 
 use Exception;
 use PDOException;

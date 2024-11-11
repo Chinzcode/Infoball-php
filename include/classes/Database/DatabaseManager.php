@@ -9,7 +9,7 @@ use Infoball\classes\Entity\Fixture\Fixture;
 use Infoball\classes\Entity\Standing\Standing;
 use Infoball\classes\Entity\Playerstats\Playerstats;
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/Infoball/config/setup.php';
 
 /**
  * Class DatabaseManager

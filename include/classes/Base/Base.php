@@ -2,7 +2,7 @@
 
 namespace Infoball\classes\Base;
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/Infoball/vendor/autoload.php';
 
 use Infoball\util\Twig\TwigEngine;
 use Infoball\classes\SessionManager\SessionManager;

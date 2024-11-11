@@ -2,7 +2,7 @@
 
 namespace Pages;
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/Infoball/config/setup.php';
 
 use Infoball\classes\Base\Base;
 use Infoball\classes\Login\LoginAction;

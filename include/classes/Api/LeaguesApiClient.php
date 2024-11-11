@@ -2,7 +2,7 @@
 
 namespace Infoball\classes\Api;
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/config/setup.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/Infoball/config/setup.php';
 
 /**
  * Class LeaguesApiClient
