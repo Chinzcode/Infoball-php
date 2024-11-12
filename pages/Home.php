@@ -26,7 +26,7 @@ class Home extends Base
                 "title" => $this->getTitle(),
             ]);
         } else {
-            header("Location: /pages/Login.php");
+            header("Location: /Infoball/pages/Login.php");
         }
     }
 

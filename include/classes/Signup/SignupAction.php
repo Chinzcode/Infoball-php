@@ -73,19 +73,19 @@ class SignupAction
             if (empty($errors)) {
                 $loginManager = SignupManager::getInstance();
                 $loginManager->createUser($this->username, $this->pwd, $this->email);
-                header("location: /pages/Login.php?signup=success");
+                header("location: /Infoball/pages/Login.php?signup=success");
                 exit;
             } else {
-                header("location: /pages/Signup.php?signup=error");
+                header("location: /Infoball/pages/Signup.php?signup=error");
                 exit;
             }
         } catch (PDOException $e) {
             error_log("Query failed: " . $e->getMessage());
-            header("Location: /pages/Signup.php");
+            header("Location: /Infoball/pages/Signup.php");
             exit;
         } catch (Exception $e) {
             error_log("Unexpected error: " . $e->getMessage());
-            header("Location: /pages/error.php");
+            header("Location: /Infoball/pages/error.php");
             exit;
         }
     }

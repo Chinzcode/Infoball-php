@@ -71,26 +71,26 @@ class LoginAction
                 if ($user) {
                     $this->sessionManager->setUser($user);
 
-                    header("Location: /pages/Home.php?login=success");
+                    header("Location: /Infoball/pages/Home.php?login=success");
                     exit;
                 } else {
                     $errors["loginIncorrect"] = "Incorrect login info!";
                     $_SESSION["errorsLogin"] = $errors;
-                    header("location: /pages/Login.php?login=error");
+                    header("location: /Infoball/pages/Login.php?login=error");
                     exit;
                 }
             } else {
                 $_SESSION["errorsLogin"] = $errors;
-                header("location: /pages/Login.php?login=error");
+                header("location: /Infoball/pages/Login.php?login=error");
                 exit;
             }
         } catch (PDOException $e) {
             error_log("Query failed: " . $e->getMessage());
-            header("Location: /pages/Login.php");
+            header("Location: /Infoball/pages/Login.php");
             exit;
         } catch (Exception $e) {
             error_log("Unexpected error: " . $e->getMessage());
-            header("Location: /pages/error.php");
+            header("Location: /Infoball/pages/error.php");
             exit;
         }
     }

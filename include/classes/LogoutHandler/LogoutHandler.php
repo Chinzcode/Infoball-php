@@ -32,7 +32,7 @@ class LogoutHandler
         session_unset();
         session_destroy();
 
-        header("location: /pages/Login.php");
+        header("location: /Infoball/pages/Login.php");
         die();
     }
 }
